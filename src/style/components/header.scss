@@ -1,0 +1,28 @@
+.header{
+    background-color: $clr-primary;
+    min-height: 80px;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border-bottom:4px solid $clr-accent;
+}
+
+
+.header-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+    .header-img-container{
+        margin-right:10px;
+        svg{
+            fill:$clr-accent;
+        }
+    }
+
+    .header-text{
+        font-weight: bold;
+        color:$clr-accent;
+    }
+}

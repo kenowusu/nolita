@@ -1,6 +1,5 @@
+@import './abstracts/index.scss';
 @import './vendors/index';
+@import './base/index.scss';
+@import './components/index.scss';
 
-
-body{
-    background-color: coral;
-}

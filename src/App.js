@@ -2,7 +2,7 @@
 
 import './style/main.scss';
 
-
+import { HomePage } from './components/HomePage';
 
 
 const App = ()=>{
@@ -10,7 +10,7 @@ const App = ()=>{
 
   return(
     <div>
-      Welcome to my app
+      <HomePage/>
     </div>
   )
 }

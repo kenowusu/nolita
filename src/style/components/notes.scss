@@ -1,0 +1,72 @@
+.notelist{
+    display: flex;
+    justify-content: center;
+    padding:40px 20px;
+    width:100%;
+    
+    margin:auto;
+
+
+    @include md{
+        max-width:900px;
+    }
+}
+
+
+.note{
+    padding:15px 10px;
+    border-bottom:1px solid #d3d3d3;
+    cursor:pointer;
+    transition: .3s background-color ease-in-out;
+
+    &:hover{
+        background-color:#eee;
+    }
+}
+
+.note-timestamp{
+    display: flex;
+    margin-bottom:10px;
+ .createdAt{
+    font-weight: bold;
+    color:$clr-accent;
+    margin-right:auto;
+ }
+
+
+
+ .updatedAt{
+    font-weight: bold;
+    color:$clr-accent;
+    display: none;
+    
+ }
+}
+
+
+.note-body{
+    color:#8a8787;
+}
+
+
+
+
+.addButton{
+    background-color: coral;
+    color:#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px 25px;
+    border-radius:35px;
+    position:fixed;
+    right:55px;
+    bottom:55px;
+    cursor: pointer;
+
+    span:first-child{
+        margin-right:7px;
+        z-index: 10;
+    }
+
+}
