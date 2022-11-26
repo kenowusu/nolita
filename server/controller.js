@@ -3,8 +3,12 @@ import Note from './model';
 
 
 const controller = (req,res)=>{
-    console.log(req.query)
-    const action = req.query.action;
+    console.log('b',req.body)
+    console.log('p',req.params);
+    console.log('q',req.query)
+
+    return;
+    const action = req.body.action;
 
     if(!action){
         return res.send({error:true,message:"The server does not understand the request"})
@@ -34,7 +38,7 @@ const controller = (req,res)=>{
 
 const createNote = async(req,res)=>{
     const id = uuid()
-    const {title,body} = req.query;
+    const {title,body} = req.body;
 
     const createnote = await Note.create({id,title,body});
     return res.send({success:true,data:createnote})
