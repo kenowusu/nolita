@@ -5,7 +5,7 @@ import { AddButton } from './AddButton';
 
 import {Header} from './Header';
 import { NoteList } from './NoteList';
-
+import { NewNote } from './NewNote';
 
 
 export const HomePage = ()=>{
@@ -15,6 +15,7 @@ export const HomePage = ()=>{
          <Header/>
          <NoteList/>
          <AddButton/>
+         <NewNote/>
       
         </>
     )
