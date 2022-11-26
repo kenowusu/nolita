@@ -3,6 +3,7 @@
 import './style/main.scss';
 
 import { HomePage } from './components/HomePage';
+import { NoteContextProvider } from './components/NoteContext';
 
 
 const App = ()=>{
@@ -10,7 +11,10 @@ const App = ()=>{
 
   return(
     <div>
-      <HomePage/>
+      <NoteContextProvider>
+         <HomePage/>
+      </NoteContextProvider>
+      
     </div>
   )
 }

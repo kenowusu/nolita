@@ -1,13 +1,13 @@
 import { useContext } from "react"
 import { NoteContext } from "./NoteContext"
 
-export const NewNote = ()=>{
-    const {setShouldShowForm} = useContext(NoteContext)
+export const EditNote = ()=>{
+    const {setShouldShowNote} = useContext(NoteContext)
     
     const hideForm = (e)=>{
         
         
-        setShouldShowForm(false)
+        setShouldShowNote(false)
        
     }
     return(
@@ -19,12 +19,10 @@ export const NewNote = ()=>{
             >
                 <form action="">
                     <input type="text" placeholder="Note Title"/>
-                    <textarea name="" id="" cols="30" rows="10" placeholder="Note Body"></textarea>
-
-                    <div>
-                        <button className="note-btn">Done</button>
-                    </div>
-                </form>
+                    <textarea name="" id="" cols="30" rows="10" placeholder="Note Body">
+                        I am an editable Note
+                    </textarea>
+                </form>)
             </div>
         </div>
     )

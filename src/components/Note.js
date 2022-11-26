@@ -1,9 +1,14 @@
-export const Note = ()=>{
+import { useContext } from "react"
+import { NoteContext } from "./NoteContext"
 
+export const Note = ()=>{
+    const {setShouldShowNote} = useContext(NoteContext)
     return(
         <div className="note">
-            <div className="note-container">
-                <div className="note-timestamp">
+            <div className="note-container"
+            onClick={()=>setShouldShowNote(true)}
+            >
+                <div className="note-timestamp" onClick={(e)=>e.stopPropagation()}>
                     <span className="createdAt">November 25,2022. 8.59pm</span>
                     <span className="updatedAt">Last update: 2days ago</span>
                 </div>
