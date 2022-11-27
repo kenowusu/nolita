@@ -30,7 +30,7 @@ const Note = sequelize.define('note', {
     allowNull: false
   },
   body: {
-    type: DataTypes.STRING
+    type: DataTypes.STRING(5000)
    
   }
 }, {

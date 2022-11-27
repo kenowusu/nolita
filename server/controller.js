@@ -62,7 +62,7 @@ const getNote = async(req,res)=>{
    
     else if(req.body.get == "single"){
         const id = req.body.id;
-        const note = await Note.find({where:{id:id}})
+        const note = await Note.findOne({where:{id:id}})
         return res.send({success:true,data:note})
     }
     else{
