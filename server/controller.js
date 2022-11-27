@@ -3,11 +3,6 @@ import Note from './model';
 
 
 const controller = (req,res)=>{
-    console.log('b',req.body)
-    console.log('p',req.params);
-    console.log('q',req.query)
-
-    return;
     const action = req.body.action;
 
     if(!action){
@@ -20,6 +15,7 @@ const controller = (req,res)=>{
         case "update":
           updateNote(req,res)
           break;
+        
         case "get":
            getNote(req,res)
           break;
@@ -40,6 +36,8 @@ const createNote = async(req,res)=>{
     const id = uuid()
     const {title,body} = req.body;
 
+    
+    
     const createnote = await Note.create({id,title,body});
     return res.send({success:true,data:createnote})
 }
@@ -55,8 +53,22 @@ const updateNote = async(req,res)=>{
 }
 
 const getNote = async(req,res)=>{
-    const notes = await User.findAll();
-    return res.send({success:true,data:notes})
+    console.log(req.body)
+    if(req.body.get == "all"){
+        const notes = await Note.findAll({});
+        console.log(notes)
+        return res.send({success:true,data:notes})
+    }
+   
+    else if(req.body.get == "single"){
+        const id = req.body.id;
+        const note = await Note.find({where:{id:id}})
+        return res.send({success:true,data:note})
+    }
+    else{
+        
+        res.end()
+    }
 }
 
 const deleteNote = (req,res)=>{

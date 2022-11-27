@@ -4,44 +4,49 @@ import { useContext } from "react"
 import { NoteContext } from "./NoteContext"
 
 export const NewNote = ()=>{
-    const {setShouldShowForm} = useContext(NoteContext)
+    const {setShouldShowForm,setNotes,notes} = useContext(NoteContext)
     
 
 
     const [title,setTitle] = useState('')
     const [body,setBody] = useState('')
     
-    const createNote = async()=>{
+    const createNote = async(e)=>{
+        e.preventDefault()
+
         
+        if(!title || !body){
+            return;
+        }
+   
         const data = {
             title,
             body,
             action:"create"
         }
-
+        
+        
         const response = await axios({
             method:'post',
             url:"http://localhost:4000",
             headers:{
                 "Content-Type":"application/json"
             },
-            data:{
-                action:"create",
-                title,
-                body:data
-            }
+            data:data
         })
-
-        console.log(response)
+        
+     
+        setShouldShowForm(false)
+        setTitle('')
+        setBody('')
+        setNotes([response.data.data,...notes])
     }
 
     const hideForm = (e)=>{ 
         setShouldShowForm(false)    
     }
 
-    useEffect(()=>{
-      createNote()
-    },[title,body])
+
     return(
         <div className="newnote"
         onClick={hideForm}
@@ -49,7 +54,7 @@ export const NewNote = ()=>{
             <div className="newnote-form"
             onClick={(e)=>e.stopPropagation()}
             >
-                <form action="">
+                <form>
                     <input type="text" placeholder="Note Title"
                      value={title} 
                     onChange={(e)=>setTitle(e.target.value)}
@@ -61,7 +66,11 @@ export const NewNote = ()=>{
                     ></textarea>
 
                     <div>
-                        <button className="note-btn">Done</button>
+                        <button className="note-btn"
+                        type='submit'
+                       
+                        onClick={createNote}
+                        >Save</button>
                     </div>
                 </form>
             </div>

@@ -1,9 +1,12 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {Note} from './Note';
+import { NoteContext } from './NoteContext';
 
 
 export const NoteList = ()=>{
-    const [notes,setNotes] = useState(['2',3,4,5,6,7,8,9]);
+
+    const {notes} = useContext(NoteContext)
+    
 
 
     return(
