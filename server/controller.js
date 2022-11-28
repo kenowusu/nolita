@@ -26,7 +26,7 @@ const controller = (req,res)=>{
 }
 
 
-
+ 
 
 
 
@@ -53,7 +53,7 @@ const createNote = async(req,res)=>{
     
 
 }
-
+ 
 
   
 
@@ -91,10 +91,17 @@ const getNote = async(req,res)=>{
         
         res.end()
     }
-}
+} 
 
 const deleteNote = (req,res)=>{
-    const id = req.query.id;
-    const deletenote = Note.destroy({where: {id}});
+    const id = req.body.id;
+
+    try {
+        const deletenote = Note.destroy({where: {id}});
+        return res.send({success:true,data:deletenote})
+    } catch (error) {
+        
+    }
+    
 }
 export default controller;

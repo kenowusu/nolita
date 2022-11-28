@@ -1,21 +1,49 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { NoteContext } from "./NoteContext"
+import moment from 'moment';
+import { isLabelWithInternallyDisabledControl } from "@testing-library/user-event/dist/utils";
+import { getNodeText } from "@testing-library/react";
 
-export const Note = ()=>{
+
+
+
+
+export const Note = ({note})=>{
+
+    const  {currentNoteId,setCurrentNoteId,getNote} = useContext(NoteContext)
     const {setShouldShowNote} = useContext(NoteContext)
+
+    const setId = (e)=>{
+       let target = e.target;
+       setShouldShowNote(true)
+       for(let i=0;i<5;i++){
+         if(target.classList.contains('note')){
+            break;
+         }
+         target = target.parentNode;
+       }
+       
+       
+       const id = target.getAttribute('noteid')
+      
+    
+       getNote(id);
+  
+    }
+
     return(
-        <div className="note">
+        <div className="note" noteid={note.id}>
             <div className="note-container"
-            onClick={()=>setShouldShowNote(true)}
+            onClick={setId}
             >
-                <div className="note-timestamp" onClick={(e)=>e.stopPropagation()}>
-                    <span className="createdAt">November 25,2022. 8.59pm</span>
-                    <span className="updatedAt">Last update: 2days ago</span>
+                <div className="note-timestamp">
+                    <span className="createdAt">
+                      {moment(note.createdAt).format('LLLL')}
+                    </span>
+                    <span className="updatedAt">Last update: {moment(note.updatedAt).fromNow()}</span>
                 </div>
                 <div className="note-body">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting 
-                    industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
-                    galley of type and scrambled it to make a type specimen book.
+                   {note.body}
                 </div>
             </div>
 

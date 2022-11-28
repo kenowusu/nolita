@@ -65,7 +65,7 @@ export const NewNote = ()=>{
                     onChange={(e)=>setBody(e.target.value)}
                     ></textarea>
 
-                    <div>
+                    <div className='note-btn-container'>
                         <button className="note-btn"
                         type='submit'
                        
