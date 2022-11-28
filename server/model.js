@@ -37,6 +37,6 @@ const Note = sequelize.define('note', {
  
 });
 
-sequelize.sync({force:true});
+sequelize.sync({force:false});
 export default Note;
  
