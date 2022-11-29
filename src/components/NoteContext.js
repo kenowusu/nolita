@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { createContext } from "react";
 
 export const NoteContext = createContext();
-
+const api = process.env.REACT_APP_API_URL;
 
 export const NoteContextProvider = (props)=>{
+    console.log(api)
     const [shouldShowForm,setShouldShowForm]  = useState(false);
     const [shouldShowNote,setShouldShowNote] = useState(false);
     const [currentNote,setCurrentNote] = useState('');
@@ -29,7 +30,7 @@ export const NoteContextProvider = (props)=>{
             id:currentNoteId
         }
         const response = await axios({
-            url:"http://localhost:4000",
+            url:api,
             method:"post",
             data:data,
             headers:{
@@ -44,21 +45,29 @@ export const NoteContextProvider = (props)=>{
     }
 
     const getNotes = async()=>{
+   
         const data = {
           action:"get",
           get:"all"
         }
-        const response = await axios({
-            url:"http://localhost:4000",
-            method:"post",
-            data:data,
-            headers:{
-                "Content-Type":"application/json"
-            }
-        })
+
+        try {
+            const response = await axios({
+                url:api,
+                method:"post",
+                data:data,
+                headers:{
+                    "Content-Type":"application/json"
+                }
+            })
+            setNotes(response.data.data)
+        } catch (error) {
+            console.log(`error: ${error.message}`)
+        }
 
 
-        setNotes(response.data.data)
+
+        
     }
 
     useEffect(()=>{getNotes()},[])

@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import axios from 'axios';
 import { useContext } from "react"
 import { NoteContext } from "./NoteContext"
+const api = process.env.REACT_APP_API_URL;
+
 
 export const NewNote = ()=>{
     const {setShouldShowForm,setNotes,notes} = useContext(NoteContext)
@@ -28,7 +30,7 @@ export const NewNote = ()=>{
         
         const response = await axios({
             method:'post',
-            url:"http://localhost:4000",
+            url:api,
             headers:{
                 "Content-Type":"application/json"
             },

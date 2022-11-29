@@ -2,6 +2,8 @@ import axios from 'axios';
 import { useContext, useEffect } from "react"
 import { NoteContext, NoteContextProvider } from "./NoteContext"
 import {MdDelete} from 'react-icons/md'
+const api = process.env.REACT_APP_API_URL;
+
 export const EditNote = (L)=>{
     const {setShouldShowNote,
         currentNote,
@@ -41,7 +43,7 @@ export const EditNote = (L)=>{
        }
 
        const response = await axios({
-        url:"http://localhost:4000",
+        url:api,
         method:"post",
         data:data
        })
@@ -99,7 +101,7 @@ export const EditNote = (L)=>{
        
         
         const response = await axios({
-            url:"http://localhost:4000",
+            url:api,
             method:"post",
             data:data
         })
